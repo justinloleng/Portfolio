@@ -8,6 +8,64 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── GSAP SETUP ── */
   gsap.registerPlugin(ScrollTrigger);
 
+  /* ── CUSTOM CURSOR ── */
+  const cursorDot = document.getElementById('cursor-dot');
+  const cursorRing = document.getElementById('cursor-ring');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+
+  // Track mouse position
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursorDot.style.left = mouseX + 'px';
+    cursorDot.style.top = mouseY + 'px';
+  });
+
+  // Smooth ring follow with lerp
+  function animateCursorRing() {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top = ringY + 'px';
+    requestAnimationFrame(animateCursorRing);
+  }
+  animateCursorRing();
+
+  // Hover expand on interactive elements
+  const hoverTargets = document.querySelectorAll('a, button, .project-card, .stack-item, .assc-title, .btn-enter');
+  hoverTargets.forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  // Click pulse
+  document.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
+  document.addEventListener('mouseup', () => document.body.classList.remove('cursor-click'));
+
+  // Hide cursor when leaving window
+  document.addEventListener('mouseleave', () => {
+    cursorDot.style.opacity = '0';
+    cursorRing.style.opacity = '0';
+  });
+  document.addEventListener('mouseenter', () => {
+    cursorDot.style.opacity = '1';
+    cursorRing.style.opacity = '0.6';
+  });
+
+  /* ── ASSC TITLE JIGGLE ON CLICK ── */
+  const asscTitle = document.querySelector('.assc-title');
+  if (asscTitle) {
+    asscTitle.addEventListener('click', () => {
+      // Remove class first to allow re-triggering
+      asscTitle.classList.remove('jiggle');
+      // Force reflow so browser registers the removal
+      void asscTitle.offsetWidth;
+      asscTitle.classList.add('jiggle');
+      // Remove class after animation ends
+      setTimeout(() => asscTitle.classList.remove('jiggle'), 800);
+    });
+  }
   /* ── REVEAL ON SCROLL ── */
   const revealItems = document.querySelectorAll('.reveal-item');
   revealItems.forEach(el => {

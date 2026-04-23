@@ -29,18 +29,65 @@
 
 /* ── RESET ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; cursor: none; }
 body {
   font-family: var(--font-body);
   background: var(--black);
   color: var(--white);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  cursor: none;
 }
-a { color: inherit; text-decoration: none; }
+a { color: inherit; text-decoration: none; cursor: none; }
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
-button { border: none; background: none; cursor: pointer; color: inherit; font-family: inherit; }
+button { border: none; background: none; cursor: none; color: inherit; font-family: inherit; }
+
+/* ── CUSTOM CURSOR ── */
+.cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 8px; height: 8px;
+  background: var(--pink);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10001;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--pink);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s var(--ease-snap), height 0.25s var(--ease-snap),
+              border-color 0.25s, opacity 0.25s;
+  opacity: 0.6;
+}
+
+/* Cursor hover states */
+.cursor-hover .cursor-dot {
+  width: 14px; height: 14px;
+  background: var(--white-pure);
+}
+.cursor-hover .cursor-ring {
+  width: 50px; height: 50px;
+  border-color: var(--white-pure);
+  opacity: 0.3;
+}
+.cursor-click .cursor-dot {
+  width: 4px; height: 4px;
+}
+.cursor-click .cursor-ring {
+  width: 24px; height: 24px;
+  opacity: 1;
+  border-color: var(--pink-hot);
+}
 
 /* ── PAGE LOAD FADE ── */
 body {
@@ -156,6 +203,8 @@ body {
 .assc-title {
   display: flex; flex-direction: column; align-items: center;
   margin-bottom: 1rem;
+  cursor: none;
+  user-select: none;
 }
 .assc-line {
   font-family: 'Georgia', 'Times New Roman', serif;
@@ -168,10 +217,33 @@ body {
   text-shadow: 2px 4px 12px rgba(0,0,0,0.7);
   transform: rotate(-5deg) skewX(-3deg);
   display: inline-block;
+  transition: color 0.2s;
 }
 .assc-line:nth-child(2) { transform: rotate(-3deg) skewX(-2deg); }
 .assc-line:nth-child(3) { transform: rotate(-4deg) skewX(-4deg); }
 .assc-line:nth-child(4) { transform: rotate(-6deg) skewX(-2deg); }
+
+/* Jiggle animation on click */
+.assc-title.jiggle .assc-line {
+  animation: asscJiggle 0.6s ease-out;
+}
+.assc-title.jiggle .assc-line:nth-child(1) { animation-delay: 0s; }
+.assc-title.jiggle .assc-line:nth-child(2) { animation-delay: 0.05s; }
+.assc-title.jiggle .assc-line:nth-child(3) { animation-delay: 0.1s; }
+.assc-title.jiggle .assc-line:nth-child(4) { animation-delay: 0.15s; }
+
+@keyframes asscJiggle {
+  0%   { transform: rotate(-5deg) skewX(-3deg) translateX(0); }
+  10%  { transform: rotate(-3deg) skewX(-1deg) translateX(-12px); color: var(--pink); }
+  20%  { transform: rotate(-7deg) skewX(-5deg) translateX(10px); }
+  30%  { transform: rotate(-4deg) skewX(-2deg) translateX(-8px); color: var(--pink-hot); }
+  40%  { transform: rotate(-6deg) skewX(-4deg) translateX(6px); }
+  50%  { transform: rotate(-3deg) skewX(-1deg) translateX(-4px); }
+  60%  { transform: rotate(-5deg) skewX(-3deg) translateX(3px); color: var(--white-pure); }
+  70%  { transform: rotate(-4deg) skewX(-2deg) translateX(-2px); }
+  80%  { transform: rotate(-5deg) skewX(-3deg) translateX(1px); }
+  100% { transform: rotate(-5deg) skewX(-3deg) translateX(0); color: var(--white-pure); }
+}
 
 .hero-handle {
   font-family: var(--font-display);

@@ -20,6 +20,12 @@
 <body>
 
   <!-- ═══════════════════════════════════════════════
+       CUSTOM CURSOR
+  ═══════════════════════════════════════════════ -->
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════════════
        GLOBAL NOISE OVERLAY
   ═══════════════════════════════════════════════ -->
   <div class="noise-overlay" aria-hidden="true"></div>
@@ -28,7 +34,7 @@
        NAV
   ═══════════════════════════════════════════════ -->
   <nav class="nav" id="main-nav" role="navigation" aria-label="Main Navigation">
-    <span class="nav-logo">JGL.</span>
+    <span class="nav-logo" id="nav-logo" role="button" tabindex="0">JGL.</span>
     <ul class="nav-links">
       <li><a href="#bio" class="nav-link">BIO</a></li>
       <li><a href="#projects" class="nav-link">PROJECTS</a></li>
@@ -64,7 +70,7 @@
         <span class="assc-line">SOCIAL</span>
         <span class="assc-line">CLUB</span>
       </div>
-      <p class="hero-handle">JUSTIN GERALD LOLENG</p>
+      <p class="hero-handle" id="hero-handle" role="button" tabindex="0">JUSTIN GERALD LOLENG</p>
       <p class="hero-role">SOFTWARE ENGINEER / FULL-STACK DEVELOPER</p>
 
       <a href="#projects" class="btn-enter" id="btn-enter" role="button">
@@ -114,7 +120,7 @@
 
         <div class="bio-col bio-col--aside">
           <div class="bio-stat">
-            <span class="stat-num">10</span>
+            <span class="stat-num">10+</span>
             <span class="stat-label">PROJECT CODE</span>
           </div>
           <div class="bio-stat">
