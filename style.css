@@ -776,3 +776,40 @@ body {
   .stack-row { gap: 0.5rem; }
   .stack-item { padding: 0.5rem 0.8rem; }
 }
+
+/* ── NAME CROSSOUT STATE ── */
+#hero-handle {
+  position: relative;
+  display: inline-block;
+  transition: color 0.3s;
+}
+#hero-handle.name-crossed {
+  color: var(--gray-text);
+}
+#hero-handle.name-crossed::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  height: 2px;
+  background: var(--pink);
+  transform: translateY(-50%);
+}
+/* Diagonal slash overlay */
+#hero-handle.name-crossed::before {
+  content: '/';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-size: 2em;
+  color: var(--pink);
+  font-weight: 700;
+  pointer-events: none;
+}
+
+/* ── CONTACT HEADLINE — make it clickable cursor ── */
+.contact-headline {
+  cursor: pointer;
+}

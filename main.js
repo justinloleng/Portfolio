@@ -288,5 +288,39 @@ document.addEventListener('DOMContentLoaded', () => {
       noiseOverlay.style.opacity = opacity;
     }, { passive: true });
   }
+/* ── NAME SLASH / CROSSOUT TOGGLE ── */
+const heroHandle = document.getElementById('hero-handle');
+if (heroHandle) {
+  heroHandle.addEventListener('click', () => {
+    heroHandle.classList.toggle('name-crossed');
+  });
+}
 
+/* ── CONTACT HEADLINE RUN AWAY ── */
+const contactHeadline = document.querySelector('.contact-headline');
+if (contactHeadline) {
+  let isRunning = false;
+  contactHeadline.addEventListener('click', () => {
+    if (isRunning) return;
+    isRunning = true;
+    // Slide out to the left
+    gsap.to(contactHeadline, {
+      x: '-120vw',
+      opacity: 0,
+      duration: 0.55,
+      ease: 'power3.in',
+      onComplete: () => {
+        // Instantly reposition off-screen RIGHT, then slide back in
+        gsap.set(contactHeadline, { x: '120vw', opacity: 0 });
+        gsap.to(contactHeadline, {
+          x: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: 'power3.out',
+          onComplete: () => { isRunning = false; }
+        });
+      }
+    });
+  });
+}
 });
