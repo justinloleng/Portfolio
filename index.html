@@ -11,6 +11,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;700&family=Oswald:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
 
+  <!-- Devicons (real tech logos) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/2.0.0/css/devicons.min.css" />
+  <!-- Devicon v2 (more complete, coloured) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+
   <!-- GSAP CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
@@ -36,12 +41,15 @@
   <nav class="nav" id="main-nav" role="navigation" aria-label="Main Navigation">
     <span class="nav-logo" id="nav-logo" role="button" tabindex="0">JGL.</span>
     <ul class="nav-links">
-      <li><a href="#bio" class="nav-link">BIO</a></li>
-      <li><a href="#projects" class="nav-link">PROJECTS</a></li>
-      <li><a href="#stack" class="nav-link">STACK</a></li>
-      <li><a href="#visual-log" class="nav-link">LOG</a></li>
-      <li><a href="#contact" class="nav-link">CONTACT</a></li>
+      <li><a href="#bio" class="nav-link" data-section="bio">BIO</a></li>
+      <li><a href="#projects" class="nav-link" data-section="projects">PROJECTS</a></li>
+      <li><a href="#stack" class="nav-link" data-section="stack">STACK</a></li>
+      <li><a href="#visual-log" class="nav-link" data-section="visual-log">LOG</a></li>
+      <li><a href="#contact" class="nav-link" data-section="contact">CONTACT</a></li>
     </ul>
+    <a href="Loleng, Justin- Resume.pdf" download="Justin_Loleng_Resume.pdf" class="nav-resume-btn" id="nav-resume-btn" aria-label="Download Resume">
+      <span class="nav-resume-icon">↓</span> RESUME
+    </a>
   </nav>
 
   <!-- ═══════════════════════════════════════════════
@@ -49,20 +57,16 @@
   ═══════════════════════════════════════════════ -->
   <section class="hero" id="hero" aria-label="Hero">
 
-    <!-- Background city address detail -->
     <div class="hero-address" aria-hidden="true">3827</div>
 
-    <!-- The pink Porsche background image -->
     <div class="hero-img-wrap" aria-hidden="true">
       <img src="theme.jpg" alt="Pink ASSC Porsche 911 GT3 parked outside Undefeated store" class="hero-img" id="hero-img" />
       <div class="hero-img-overlay"></div>
     </div>
 
-    <!-- UNDEFEATED side labels -->
     <div class="hero-tag hero-tag--left" aria-hidden="true">UNDEFEATED</div>
     <div class="hero-tag hero-tag--right" aria-hidden="true">UNDEFEATED</div>
 
-    <!-- Center text composition — ASSC wavy title -->
     <div class="hero-content">
       <div class="assc-title" aria-label="Anti Social Social Club styled heading">
         <span class="assc-line">ANTI</span>
@@ -79,7 +83,6 @@
       </a>
     </div>
 
-    <!-- Bottom credit label like AHOODIE.COM -->
     <div class="hero-credit" aria-hidden="true">
       <span>A.S.S.C.</span>
       <span>PORTFOLIO 2025</span>
@@ -92,7 +95,6 @@
   ═══════════════════════════════════════════════ -->
   <section class="bio-section section" id="bio" aria-labelledby="bio-heading">
 
-    <!-- Korean watermark background text -->
     <div class="bio-watermark" aria-hidden="true">자살</div>
 
     <div class="section-inner">
@@ -144,14 +146,14 @@
   <section class="projects-section section" id="projects" aria-labelledby="projects-heading">
     <div class="section-inner">
       <h2 class="section-label stencil-label" id="projects-heading">[ FEATURED PROJECTS ]</h2>
-      <p class="section-sub">DRAG OR SCROLL HORIZONTALLY</p>
+      <p class="section-sub">SELECTED WORKS — 2023–2025</p>
     </div>
 
-    <!-- Horizontally scrolling carousel -->
+    <!-- ✅ FIXED: was "projects-grid", now correct "projects-track-wrap" + "projects-track" -->
     <div class="projects-track-wrap">
-      <div class="projects-track" id="projects-track" role="list">
+      <div class="projects-track" role="list">
 
-        <!-- CARD 1: PVP Coding Wars -->
+        <!-- CARD 1 -->
         <article class="project-card reveal-item" role="listitem" id="card-pvp">
           <div class="card-number">01</div>
           <div class="card-img-wrap">
@@ -178,7 +180,7 @@
           </div>
         </article>
 
-        <!-- CARD 2: WebPath -->
+        <!-- CARD 2 -->
         <article class="project-card reveal-item" role="listitem" id="card-webpath">
           <div class="card-number">02</div>
           <div class="card-img-wrap">
@@ -200,12 +202,12 @@
             </ul>
             <div class="card-footer-row">
               <span class="card-code">UNDEFEATED CODE</span>
-              <a href="https://webpaths-vtjf.vercel.app" class="card-link" aria-label="View WebPath project">VIEW →</a>
+              <a href="https://webpaths-vtjf.vercel.app" class="card-link" target="_blank" rel="noopener noreferrer" aria-label="View WebPath project">VIEW →</a>
             </div>
           </div>
         </article>
 
-        <!-- CARD 3: SatisTrack -->
+        <!-- CARD 3 -->
         <article class="project-card reveal-item" role="listitem" id="card-satistrack">
           <div class="card-number">03</div>
           <div class="card-img-wrap">
@@ -225,12 +227,12 @@
             </ul>
             <div class="card-footer-row">
               <span class="card-code">LAST TIME APP</span>
-              <a href="https://github.com/justinloleng/SatisTrack" class="card-link" aria-label="View SatisTrack project">VIEW →</a>
+              <a href="https://github.com/justinloleng/SatisTrack" class="card-link" target="_blank" rel="noopener noreferrer" aria-label="View SatisTrack project">VIEW →</a>
             </div>
           </div>
         </article>
 
-        <!-- CARD 4: E-Commerce Flask -->
+        <!-- CARD 4 -->
         <article class="project-card reveal-item" role="listitem" id="card-ecom">
           <div class="card-number">04</div>
           <div class="card-img-wrap">
@@ -250,20 +252,20 @@
             </ul>
             <div class="card-footer-row">
               <span class="card-code">PROJECT 747-B</span>
-              <a href="https://github.com/justinloleng/ecommerce" class="card-link" aria-label="View E-Commerce project">VIEW →</a>
+              <a href="https://github.com/justinloleng/ecommerce" class="card-link" target="_blank" rel="noopener noreferrer" aria-label="View E-Commerce project">VIEW →</a>
             </div>
           </div>
         </article>
 
-      </div><!-- /projects-track -->
-    </div><!-- /projects-track-wrap -->
+      </div><!-- end .projects-track -->
+    </div><!-- end .projects-track-wrap -->
 
-    <!-- Drag indicator -->
-    <div class="drag-hint" aria-hidden="true">
+    <p class="drag-hint">
       <span class="drag-line"></span>
-      <span>DRAG</span>
+      DRAG TO EXPLORE
       <span class="drag-line"></span>
-    </div>
+    </p>
+
   </section>
 
   <!-- ═══════════════════════════════════════════════
@@ -275,58 +277,127 @@
 
       <div class="stack-grid reveal-item">
 
-        <!-- Languages -->
+        <!-- LANGUAGES -->
         <div class="stack-group">
           <h3 class="stack-group-title">LANGUAGES</h3>
           <div class="stack-row">
-            <div class="stack-item" title="JavaScript"><span class="stack-icon">⬡</span><span class="stack-name">JAVASCRIPT</span></div>
-            <div class="stack-item" title="TypeScript"><span class="stack-icon">⬡</span><span class="stack-name">TYPESCRIPT</span></div>
-            <div class="stack-item" title="Python"><span class="stack-icon">⬡</span><span class="stack-name">PYTHON</span></div>
-            <div class="stack-item" title="PHP"><span class="stack-icon">⬡</span><span class="stack-name">PHP</span></div>
-            <div class="stack-item" title="Dart"><span class="stack-icon">⬡</span><span class="stack-name">DART</span></div>
+            <div class="stack-item" title="JavaScript">
+              <i class="devicon-javascript-plain colored stack-icon"></i>
+              <span class="stack-name">JAVASCRIPT</span>
+            </div>
+            <div class="stack-item" title="TypeScript">
+              <i class="devicon-typescript-plain colored stack-icon"></i>
+              <span class="stack-name">TYPESCRIPT</span>
+            </div>
+            <div class="stack-item" title="Python">
+              <i class="devicon-python-plain colored stack-icon"></i>
+              <span class="stack-name">PYTHON</span>
+            </div>
+            <div class="stack-item" title="PHP">
+              <i class="devicon-php-plain colored stack-icon"></i>
+              <span class="stack-name">PHP</span>
+            </div>
+            <div class="stack-item" title="Dart">
+              <i class="devicon-dart-plain colored stack-icon"></i>
+              <span class="stack-name">DART</span>
+            </div>
           </div>
         </div>
 
-        <!-- Frontend -->
+        <!-- FRONTEND -->
         <div class="stack-group">
           <h3 class="stack-group-title">FRONTEND</h3>
           <div class="stack-row">
-            <div class="stack-item" title="React.js"><span class="stack-icon">⬡</span><span class="stack-name">REACT.JS</span></div>
-            <div class="stack-item" title="Next.js"><span class="stack-icon">⬡</span><span class="stack-name">NEXT.JS</span></div>
-            <div class="stack-item" title="Tailwind CSS"><span class="stack-icon">⬡</span><span class="stack-name">TAILWIND CSS</span></div>
-            <div class="stack-item" title="Flutter"><span class="stack-icon">⬡</span><span class="stack-name">FLUTTER</span></div>
-            <div class="stack-item" title="GSAP"><span class="stack-icon">⬡</span><span class="stack-name">GSAP</span></div>
+            <div class="stack-item" title="React.js">
+              <i class="devicon-react-original colored stack-icon"></i>
+              <span class="stack-name">REACT.JS</span>
+            </div>
+            <div class="stack-item" title="Next.js">
+              <i class="devicon-nextjs-plain stack-icon"></i>
+              <span class="stack-name">NEXT.JS</span>
+            </div>
+            <div class="stack-item" title="Tailwind CSS">
+              <i class="devicon-tailwindcss-plain colored stack-icon"></i>
+              <span class="stack-name">TAILWIND CSS</span>
+            </div>
+            <div class="stack-item" title="Flutter">
+              <i class="devicon-flutter-plain colored stack-icon"></i>
+              <span class="stack-name">FLUTTER</span>
+            </div>
+            <div class="stack-item" title="GSAP">
+              <span class="stack-icon stack-icon--text">GS</span>
+              <span class="stack-name">GSAP</span>
+            </div>
           </div>
         </div>
 
-        <!-- Backend & Databases -->
+        <!-- BACKEND / DATABASES -->
         <div class="stack-group">
           <h3 class="stack-group-title">BACKEND / DATABASES</h3>
           <div class="stack-row">
-            <div class="stack-item" title="Node.js"><span class="stack-icon">⬡</span><span class="stack-name">NODE.JS</span></div>
-            <div class="stack-item" title="TypeScript"><span class="stack-icon">⬡</span><span class="stack-name">TYPECRIPT</span></div>
-            <div class="stack-item" title="Express.js"><span class="stack-icon">⬡</span><span class="stack-name">EXPRESS.JS</span></div>
-            <div class="stack-item" title="Flask"><span class="stack-icon">⬡</span><span class="stack-name">FLASK</span></div>
-            <div class="stack-item" title="Laravel"><span class="stack-icon">⬡</span><span class="stack-name">LARAVEL</span></div>
-            <div class="stack-item" title="MongoDB"><span class="stack-icon">⬡</span><span class="stack-name">MONGODB</span></div>
-            <div class="stack-item" title="MySQL"><span class="stack-icon">⬡</span><span class="stack-name">MYSQL</span></div>
-            <div class="stack-item" title="PostgreSQL"><span class="stack-icon">⬡</span><span class="stack-name">POSTGRESQL</span></div>
+            <div class="stack-item" title="Node.js">
+              <i class="devicon-nodejs-plain colored stack-icon"></i>
+              <span class="stack-name">NODE.JS</span>
+            </div>
+            <div class="stack-item" title="TypeScript">
+              <i class="devicon-typescript-plain colored stack-icon"></i>
+              <span class="stack-name">TYPESCRIPT</span>
+            </div>
+            <div class="stack-item" title="Express.js">
+              <i class="devicon-express-original stack-icon"></i>
+              <span class="stack-name">EXPRESS.JS</span>
+            </div>
+            <div class="stack-item" title="Flask">
+              <i class="devicon-flask-original stack-icon"></i>
+              <span class="stack-name">FLASK</span>
+            </div>
+            <div class="stack-item" title="Laravel">
+              <i class="devicon-laravel-plain colored stack-icon"></i>
+              <span class="stack-name">LARAVEL</span>
+            </div>
+            <div class="stack-item" title="MongoDB">
+              <i class="devicon-mongodb-plain colored stack-icon"></i>
+              <span class="stack-name">MONGODB</span>
+            </div>
+            <div class="stack-item" title="MySQL">
+              <i class="devicon-mysql-plain colored stack-icon"></i>
+              <span class="stack-name">MYSQL</span>
+            </div>
+            <div class="stack-item" title="PostgreSQL">
+              <i class="devicon-postgresql-plain colored stack-icon"></i>
+              <span class="stack-name">POSTGRESQL</span>
+            </div>
           </div>
         </div>
 
-        <!-- Tools -->
+        <!-- TOOLS -->
         <div class="stack-group">
           <h3 class="stack-group-title">TOOLS</h3>
           <div class="stack-row">
-            <div class="stack-item" title="Git"><span class="stack-icon">⬡</span><span class="stack-name">GIT</span></div>
-            <div class="stack-item" title="Figma"><span class="stack-icon">⬡</span><span class="stack-name">FIGMA</span></div>
-            <div class="stack-item" title="Postman"><span class="stack-icon">⬡</span><span class="stack-name">POSTMAN</span></div>
-            <div class="stack-item" title="Socket.io"><span class="stack-icon">⬡</span><span class="stack-name">SOCKET.IO</span></div>
-            <div class="stack-item" title="REST APIs"><span class="stack-icon">⬡</span><span class="stack-name">REST APIs</span></div>
+            <div class="stack-item" title="Git">
+              <i class="devicon-git-plain colored stack-icon"></i>
+              <span class="stack-name">GIT</span>
+            </div>
+            <div class="stack-item" title="Figma">
+              <i class="devicon-figma-plain colored stack-icon"></i>
+              <span class="stack-name">FIGMA</span>
+            </div>
+            <div class="stack-item" title="Postman">
+              <i class="devicon-postman-plain colored stack-icon"></i>
+              <span class="stack-name">POSTMAN</span>
+            </div>
+            <div class="stack-item" title="Socket.io">
+              <span class="stack-icon stack-icon--text">IO</span>
+              <span class="stack-name">SOCKET.IO</span>
+            </div>
+            <div class="stack-item" title="REST APIs">
+              <span class="stack-icon stack-icon--text">API</span>
+              <span class="stack-name">REST APIs</span>
+            </div>
           </div>
         </div>
 
-      </div><!-- /stack-grid -->
+      </div>
     </div>
   </section>
 
@@ -340,36 +411,29 @@
 
     <div class="log-track-wrap">
       <div class="log-track" id="log-track">
-
         <div class="log-slide" id="log-slide-1">
           <img src="img_log1.png" alt="Close-up of mechanical key switch with South Korean flag decal" loading="lazy" />
           <div class="log-caption">KEY SWITCH / FLAG DECAL / 2024</div>
         </div>
-
         <div class="log-slide" id="log-slide-2">
           <img src="img_log2.png" alt="Concrete wall with 자살 painted in white spray paint" loading="lazy" />
           <div class="log-caption">자살 / CONCRETE / WEST SIDE</div>
         </div>
-
         <div class="log-slide" id="log-slide-3">
           <img src="img_log3.png" alt="Motion blur pink neon sign at night" loading="lazy" />
           <div class="log-caption">PINK NEON / MOTION BLUR / NIGHTSCAPE</div>
         </div>
-
         <div class="log-slide" id="log-slide-4">
           <img src="img_log4.png" alt="Server racks with UNDEFEATED label sticker" loading="lazy" />
           <div class="log-caption">SERVER RACKS / UNDEFEATED / DATA CENTER</div>
         </div>
-
         <div class="log-slide" id="log-slide-5">
           <img src="img_log5.png" alt="Black custom wheel with pink brake caliper" loading="lazy" />
           <div class="log-caption">BLACK WHEEL / PINK CALIPER / DETAIL SHOT</div>
         </div>
+      </div>
+    </div>
 
-      </div><!-- /log-track -->
-    </div><!-- /log-track-wrap -->
-
-    <!-- Manual nav dots -->
     <div class="log-dots" id="log-dots" role="tablist" aria-label="Visual log navigation">
       <button class="log-dot active" data-idx="0" role="tab" aria-label="Slide 1" aria-selected="true"></button>
       <button class="log-dot" data-idx="1" role="tab" aria-label="Slide 2" aria-selected="false"></button>
@@ -377,7 +441,6 @@
       <button class="log-dot" data-idx="3" role="tab" aria-label="Slide 4" aria-selected="false"></button>
       <button class="log-dot" data-idx="4" role="tab" aria-label="Slide 5" aria-selected="false"></button>
     </div>
-
   </section>
 
   <!-- ═══════════════════════════════════════════════
@@ -385,7 +448,6 @@
   ═══════════════════════════════════════════════ -->
   <section class="contact-section section" id="contact" aria-labelledby="contact-heading">
 
-    <!-- Subtle car fade-in at the bottom -->
     <div class="contact-car-bg" aria-hidden="true">
       <img src="theme.jpg" alt="" />
     </div>
@@ -399,6 +461,14 @@
         I'm actively seeking opportunities as a Junior Software Engineer or Web Developer.<br/>
         Feel free to reach out.
       </p>
+
+      <div class="contact-resume-wrap reveal-item">
+        <a href="Loleng, Justin- Resume.pdf" download="Justin_Loleng_Resume.pdf" class="btn-download-resume" id="btn-download-resume" aria-label="Download Justin Loleng Resume PDF">
+          <span class="btn-download-icon">↓</span>
+          <span class="btn-download-text">DOWNLOAD RESUME</span>
+          <span class="btn-download-format">PDF</span>
+        </a>
+      </div>
 
       <nav class="contact-links reveal-item" aria-label="Social and Contact Links">
         <a href="https://github.com/justinloleng" class="contact-link" id="link-github" target="_blank" rel="noopener noreferrer">
@@ -422,7 +492,6 @@
       <div class="contact-email reveal-item">lolengjustingerald@gmail.com</div>
     </div>
 
-    <!-- Footer bar -->
     <footer class="footer-bar">
       <span class="footer-credit footer-credit--left">DESIGNED BY: JUSTIN GERALD LOLENG</span>
       <span class="footer-credit footer-credit--center">A.S.S.C. Inspired PORTFOLIO</span>
