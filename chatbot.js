@@ -256,10 +256,10 @@ Don't sleep — <a href="Loleng, Justin- Resume.pdf" download style="color: var(
   ];
 
   const fallbacks = [
-    `Hmm, I'm only wired to talk about Justin. Try asking about his <strong>projects</strong>, <strong>skills</strong>, <strong>education</strong>, or <strong>contact info</strong>. 🤷`,
-    `That's outside my knowledge zone — I only know Justin's resume cold. Ask me about his stack, projects, or how to hire him. 💼`,
-    `I can't answer that, but I can tell you Justin is a <strong>MERN stack dev</strong> open to work. Try asking about his projects or skills! 🔥`,
-    `Not in my database. But if you ask about Justin's background, experience, or how to reach him — I've got you covered. 📋`
+    `Thanks for that! 😊 I'm only set up to answer questions about <strong>Justin</strong> though — feel free to ask about his projects, skills, education, or how to reach him!`,
+    `Appreciate you! That one's outside my scope, but I'd love to help with anything Justin-related. Try asking about his <strong>tech stack</strong>, <strong>projects</strong>, or <strong>availability</strong>. 💼`,
+    `Thanks for chatting! I'm exclusively built around Justin's info, so I can't help with that one. Ask me about his background, what he's built, or how to hire him! 🚀`,
+    `Good question — just not one I can answer! I'm only wired for Justin-related topics. Give me another one about his <strong>skills</strong>, <strong>projects</strong>, or <strong>contact info</strong>. 📋`
   ];
 
   let fallbackIdx = 0;
@@ -274,7 +274,13 @@ Don't sleep — <a href="Loleng, Justin- Resume.pdf" download style="color: var(
     if (!text) return null;
 
     for (const entry of responses) {
-      if (entry.keys.some(k => text.includes(k))) {
+      if (entry.keys.some(k => {
+        // Use word-boundary matching so 'hi' doesn't fire inside 'his'/'him'/'hire',
+        // 'hey' doesn't fire inside 'they', 'yo' doesn't fire inside 'your', etc.
+        const escaped = k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        return new RegExp('(?:^|\\s)' + escaped + '(?:\\s|$|[?.!,])').test(text)
+          || new RegExp('\\b' + escaped + '\\b').test(text);
+      })) {
         return entry.reply();
       }
     }
