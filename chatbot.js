@@ -18,10 +18,11 @@
 
     education: {
       degree: 'Bachelor of Science in Information Technology',
-      school: 'New Era University',
-      location: 'Quezon City, Philippines',
+      major: 'Major in Mobile and Web Technologies',
+      school: 'Pangasinan State University Urdaneta Campus',
+      location: 'Urdaneta, Pangasinan, Philippines',
       graduated: '2025',
-      relevantCourses: ['Data Structures & Algorithms', 'Web Development', 'Database Management', 'Software Engineering', 'Mobile App Development']
+      relevantCourses: ['Mobile App Development', 'Web Development', 'Data Structures & Algorithms', 'Database Management', 'Software Engineering']
     },
 
     summary: `Aspiring Software Engineer passionate about building dynamic and user-friendly web applications. 
@@ -111,8 +112,8 @@ Crafting digital experiences with a touch of street culture.`,
       reply: () => `<strong>${KB.name}</strong> is an aspiring <em>Software Engineer & Full-Stack Developer</em> based in the Philippines. He specializes in the <strong>MERN stack</strong> and builds high-performance web apps with a touch of street culture aesthetic. Fresh grad, hungry to ship real products. 🔥`
     },
     {
-      keys: ['education', 'degree', 'school', 'university', 'college', 'study', 'studied', 'graduate', 'graduated'],
-      reply: () => `Justin holds a <strong>BS in Information Technology</strong> from <strong>${KB.education.school}</strong> (${KB.education.location}), graduated <strong>${KB.education.graduated}</strong>. Focused on web development, databases, and software engineering throughout his studies.`
+      keys: ['education', 'degree', 'school', 'university', 'college', 'study', 'studied', 'graduate', 'graduated', 'pangasinan', 'urdaneta', 'psu'],
+      reply: () => `Justin graduated with a <strong>Bachelor of Science in Information Technology</strong>, <strong>${KB.education.major}</strong> from <strong>${KB.education.school}</strong> in ${KB.education.location} 🎓<br><br>His coursework centered around mobile & web development, building a strong foundation across front-end, back-end, databases, and software engineering.`
     },
     {
       keys: ['skills', 'tech', 'technology', 'technologies', 'know', 'languages', 'stack', 'tools', 'expertise', 'what can he do'],
@@ -198,20 +199,22 @@ He's actively looking for opportunities as a Junior Software Engineer or Web Dev
     },
     {
       keys: ['available', 'hire', 'hiring', 'job', 'work', 'opportunities', 'open to', 'looking for', 'freelance', 'intern', 'internship'],
-      reply: () => `Yes! Justin is <strong>actively seeking opportunities</strong> as a Junior Software Engineer or Web Developer. He's open to:<br><br>
+      reply: () => `<strong>Yes — actively available right now.</strong> Justin is currently looking for his next opportunity as a Junior Software Engineer or Web Developer. Open to:<br><br>
 ✅ Full-time positions<br>
 ✅ Internships<br>
-✅ Freelance projects<br>
+✅ Freelance / project-based work<br>
 ✅ Remote or on-site<br><br>
-Reach him at <a href="mailto:${KB.email}" style="color: var(--pink)">${KB.email}</a> or download his <a href="Loleng, Justin- Resume.pdf" download style="color: var(--pink)">resume here</a>. 🚀`
+📧 <a href="mailto:${KB.email}" style="color: var(--pink)">${KB.email}</a><br>
+💼 <a href="${KB.linkedin}" target="_blank" style="color: var(--pink)">LinkedIn</a> · 💻 <a href="${KB.github}" target="_blank" style="color: var(--pink)">GitHub</a><br><br>
+Don't sleep — <a href="Loleng, Justin- Resume.pdf" download style="color: var(--pink)">grab his resume here ↓</a> 🚀`
     },
     {
       keys: ['resume', 'cv', 'download', 'pdf'],
       reply: () => `You can <a href="Loleng, Justin- Resume.pdf" download="Justin_Loleng_Resume.pdf" style="color: var(--pink); font-weight: bold;">↓ download Justin's resume here</a> or use the button in the nav bar. It covers his education, skills, and project experience. 📄`
     },
     {
-      keys: ['location', 'based', 'where', 'country', 'philippines', 'quezon', 'manila'],
-      reply: () => `Justin is based in the <strong>Philippines</strong> 🇵🇭 — specifically the Metro Manila / Quezon City area. He studied at New Era University in Quezon City. Open to remote and relocation opportunities.`
+      keys: ['location', 'based', 'where', 'country', 'philippines', 'pangasinan', 'urdaneta', 'manila'],
+      reply: () => `Justin is based in the <strong>Philippines</strong> 🇵🇭 — he studied at <strong>Pangasinan State University Urdaneta Campus</strong> in Pangasinan. Open to remote work and relocation opportunities.`
     },
     {
       keys: ['interests', 'hobbies', 'outside', 'fun', 'passion', 'like', 'free time'],
