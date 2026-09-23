@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" fill="#0a0a0a"/>
-  <text
-    x="50%"
-    y="50%"
-    dominant-baseline="central"
-    text-anchor="middle"
-    font-family="'Bebas Neue', Impact, sans-serif"
-    font-size="22"
-    font-weight="700"
-    letter-spacing="2"
-    fill="#ffffff"
-  >JGL</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="64" height="64" shape-rendering="crispEdges">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#52476a"/>
+      <stop offset="0.55" stop-color="#e0766b"/>
+      <stop offset="1" stop-color="#f4a06c"/>
+    </linearGradient>
+  </defs>
+  <rect width="16" height="16" fill="url(#sky)"/>
+  <rect x="10" y="3" width="3" height="3" fill="#ffe2c4"/>
+  <path fill="#2b1d2f" d="M0 11h2V8h2v3h1V5h3v2h1v4h1V9h2V6h2v3h2v7H0z"/>
+  <path fill="#ffb86b" d="M6 7h1v1H6zM6 9h1v1H6zM13 8h1v1h-1zM2 10h1v1H2z"/>
+  <path fill="#ff7aa8" d="M11 12h1v1h-1zM4 13h1v1H4z"/>
 </svg>

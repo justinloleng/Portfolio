@@ -3,500 +3,461 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Justin Gerald Loleng — Software Engineer portfolio. MERN stack developer specializing in high-performance web applications and visually striking interfaces." />
-  <title>JUSTIN GERALD — PORTFOLIO</title>
+  <meta name="description" content="Justin Gerald Loleng - Software Engineer and Full-Stack Developer from the Philippines. React, TypeScript, Node.js, Express, Prisma and MySQL." />
+  <meta name="theme-color" content="#f2876c" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#131827" media="(prefers-color-scheme: dark)" />
+  <title>Justin Gerald Loleng | Software Engineer</title>
 
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="shortcut icon" href="favicon.svg" />
+  <link rel="preload" href="assets/fonts/minecraft.woff2" as="font" type="font/woff2" crossorigin />
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;700&family=Oswald:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Devicons (real tech logos) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicons/2.0.0/css/devicons.min.css" />
-  <!-- Devicon v2 (more complete, coloured) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
-
-  <!-- GSAP CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <!-- Apply the saved / system theme before first paint, and flag JS so reveal animations can hide content up front -->
+  <script>
+    (function () {
+      var d = document.documentElement, t = null;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') {
+        t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      d.setAttribute('data-theme', t);
+      d.classList.add('js');
+      // If GSAP never arrives (offline, blocked CDN), show everything anyway
+      setTimeout(function () { if (!d.classList.contains('anim-ready')) d.classList.remove('js'); }, 3000);
+    })();
+  </script>
 
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="main.js" defer></script>
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════════════════
-       CUSTOM CURSOR
-  ═══════════════════════════════════════════════ -->
-  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
-  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+  <!-- ============ BACKGROUND: dusk (light) / night (dark) city ============ -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg__layer bg__layer--dusk" id="bgDusk"></div>
+    <div class="bg__layer bg__layer--night" id="bgNight"></div>
+    <div class="bg__glow" id="bgGlow"></div>
+    <div class="bg__stars" id="bgStars"></div>
+    <div class="bg__scrim" id="bgScrim"></div>
+  </div>
 
-  <!-- ═══════════════════════════════════════════════
-       GLOBAL NOISE OVERLAY
-  ═══════════════════════════════════════════════ -->
-  <div class="noise-overlay" aria-hidden="true"></div>
+  <a class="skip-link" href="#about">Skip to content</a>
 
-  <!-- ═══════════════════════════════════════════════
-       NAV
-  ═══════════════════════════════════════════════ -->
-  <nav class="nav" id="main-nav" role="navigation" aria-label="Main Navigation">
-    <span class="nav-logo" id="nav-logo" role="button" tabindex="0">JGL.</span>
-    <ul class="nav-links">
-      <li><a href="#bio" class="nav-link" data-section="bio">BIO</a></li>
-      <li><a href="#projects" class="nav-link" data-section="projects">PROJECTS</a></li>
-      <li><a href="#stack" class="nav-link" data-section="stack">STACK</a></li>
-      <li><a href="#visual-log" class="nav-link" data-section="visual-log">LOG</a></li>
-      <li><a href="#contact" class="nav-link" data-section="contact">CONTACT</a></li>
-    </ul>
-    <a href="Loleng, Justin- Resume.pdf" download="Justin_Loleng_Resume.pdf" class="nav-resume-btn" id="nav-resume-btn" aria-label="Download Resume">
-      <span class="nav-resume-icon">↓</span> RESUME
-    </a>
-  </nav>
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#home" aria-label="Justin Gerald Loleng, back to top">JGL<span class="nav__cursor" aria-hidden="true">_</span></a>
 
-  <!-- ═══════════════════════════════════════════════
-       HERO SECTION
-  ═══════════════════════════════════════════════ -->
-  <section class="hero" id="hero" aria-label="Hero">
+    <nav class="nav__links" id="navLinks" aria-label="Sections">
+      <a href="#about" data-section="about">About</a>
+      <a href="#stack" data-section="stack">Stack</a>
+      <a href="#work" data-section="work">Work</a>
+      <a href="#contact" data-section="contact">Contact</a>
+      <span class="nav__indicator" id="navIndicator" aria-hidden="true"></span>
+    </nav>
 
-    <div class="hero-address" aria-hidden="true">3827</div>
-
-    <div class="hero-img-wrap" aria-hidden="true">
-      <img src="theme.jpg" alt="Pink ASSC Porsche 911 GT3 parked outside Undefeated store" class="hero-img" id="hero-img" />
-      <div class="hero-img-overlay"></div>
+    <div class="nav__actions">
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Toggle dusk / night">
+        <svg class="icon-sun" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+          <path d="M7 0h2v2H7zM7 14h2v2H7zM0 7h2v2H0zM14 7h2v2h-2zM2 2h2v2H2zM12 2h2v2h-2zM2 12h2v2H2zM12 12h2v2h-2zM6 4h4v1h1v1h1v4h-1v1h-1v1H6v-1H5v-1H4V6h1V5h1z" />
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges">
+          <path d="M6 1h4v1H8v1H7v2H6v6h1v2h1v1h2v1h3v1H5v-1H4v-1H3v-1H2v-2H1V5h1V3h1V2h1V1z" />
+          <path d="M12 3h1v1h-1zM14 6h1v1h-1zM11 7h1v1h-1z" />
+        </svg>
+      </button>
+      <a class="btn btn--sm nav__resume" href="Loleng, Justin- Resume.pdf" download="Justin_Loleng_Resume.pdf">Resume</a>
+      <button class="icon-btn nav__menu" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <svg viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges"><path d="M2 3h12v2H2zM2 7h12v2H2zM2 11h12v2H2z" /></svg>
+      </button>
     </div>
+  </header>
 
-    <div class="hero-tag hero-tag--left" aria-hidden="true">UNDEFEATED</div>
-    <div class="hero-tag hero-tag--right" aria-hidden="true">UNDEFEATED</div>
+  <main>
 
-    <div class="hero-content">
-      <div class="assc-title" aria-label="Anti Social Social Club styled heading">
-        <span class="assc-line">ANTI</span>
-        <span class="assc-line">SOCIAL</span>
-        <span class="assc-line">SOCIAL</span>
-        <span class="assc-line">CLUB</span>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home" aria-labelledby="hero-name">
+      <div class="hero__copy">
+        <p class="badge" data-hero>
+          <span class="badge__dot" aria-hidden="true"></span>
+          Open to work - Pangasinan, PH
+        </p>
+
+        <h1 class="hero__name" id="hero-name" aria-label="Justin Gerald Loleng">
+          <span class="hero__line" aria-hidden="true">JUSTIN GERALD</span>
+          <span class="hero__line hero__line--accent" aria-hidden="true">LOLENG</span>
+        </h1>
+
+        <p class="hero__role" data-hero>
+          <span class="sr-only">Software engineer. I build full-stack web apps, REST APIs and clean, fast interfaces.</span>
+          <span aria-hidden="true">I build <span class="rotator" id="rotator">full-stack web apps</span></span>
+        </p>
+
+        <p class="hero__intro" data-hero>
+          Software engineer from the Philippines working across the whole stack: React and TypeScript on the front,
+          Node.js, Express and Prisma on the back. BS IT graduate; most recently project manager and developer of the
+          Coach Module at Suitelifer, which I built and deployed to production.
+        </p>
+
+        <div class="hero__cta" data-hero>
+          <a class="btn" href="#work">See my work</a>
+          <a class="btn btn--ghost" href="#about">About me</a>
+        </div>
       </div>
-      <p class="hero-handle" id="hero-handle" role="button" tabindex="0">JUSTIN GERALD LOLENG</p>
-      <p class="hero-role">SOFTWARE ENGINEER / FULL-STACK DEVELOPER</p>
 
-      <a href="#projects" class="btn-enter" id="btn-enter" role="button">
-        ENTER [PROJECTS]
-        <span class="btn-enter__arrow">↓</span>
+      <aside class="window hero__status" aria-label="Quick facts" data-hero-window>
+        <div class="window__bar">
+          <span>status.exe</span>
+          <span class="window__ctrls" aria-hidden="true"><i></i><i></i><i></i></span>
+        </div>
+        <div class="terminal" id="terminal">
+          <p><span class="t-prompt">&gt;</span> whoami</p>
+          <p class="t-out">justin loleng, software engineer</p>
+          <p><span class="t-prompt">&gt;</span> location</p>
+          <p class="t-out">Pangasinan, Philippines (GMT+8)</p>
+          <p><span class="t-prompt">&gt;</span> education</p>
+          <p class="t-out">BS IT graduate, Pangasinan State Univ.</p>
+          <p><span class="t-prompt">&gt;</span> last_deployed</p>
+          <p class="t-out">Coach Module @ Suitelifer (PM + dev)</p>
+          <p><span class="t-prompt">&gt;</span> daily_drivers</p>
+          <p class="t-out">React / TypeScript / Node / Prisma</p>
+          <p><span class="t-prompt">&gt;</span> status</p>
+          <p class="t-out t-good">open to junior SWE roles<span class="t-caret" aria-hidden="true"></span></p>
+        </div>
+      </aside>
+
+      <a class="scroll-cue" href="#about" aria-label="Scroll to About">
+        <span>scroll</span>
+        <svg viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges"><path d="M7 2h2v8h2V8h2v2h-1v1h-1v1h-1v1H9v1H7v-1H6v-1H5v-1H4v-1H3V8h2v2h2z" /></svg>
       </a>
-    </div>
+    </section>
 
-    <div class="hero-credit" aria-hidden="true">
-      <span>A.S.S.C.</span>
-      <span>PORTFOLIO 2025</span>
-    </div>
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <header class="section__head">
+        <p class="section__kicker" data-reveal>[01] about</p>
+        <h2 class="section__title" id="about-title" data-reveal>Who's behind the keyboard</h2>
+      </header>
 
-  </section>
+      <div class="about">
+        <article class="window profile" data-reveal>
+          <div class="window__bar">
+            <span>profile.jpg</span>
+            <span class="window__ctrls" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="profile__body">
+            <div class="profile__photo">
+              <img src="assets/profile.jpg" alt="Portrait of Justin Gerald Loleng" width="400" height="400" loading="lazy" />
+            </div>
+            <h3 class="profile__name">Justin Gerald Loleng</h3>
+            <p class="profile__role">Software Engineer - Full-Stack</p>
+            <dl class="facts">
+              <div><dt>Based in</dt><dd>Pangasinan, Philippines</dd></div>
+              <div><dt>Education</dt><dd>BS Information Technology graduate, Pangasinan State University</dd></div>
+              <div><dt>Focus</dt><dd>MERN + TypeScript, clean architecture</dd></div>
+              <div><dt>Status</dt><dd class="is-good">Open to work</dd></div>
+            </dl>
+            <div class="profile__links">
+              <a class="icon-link" href="https://github.com/justinloleng" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <img src="assets/icons/github.svg" alt="" width="20" height="20" />
+              </a>
+              <a class="icon-link" href="https://www.linkedin.com/in/justin-gerald-loleng-b0134834a/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <img src="assets/icons/linkedin.svg" alt="" width="20" height="20" />
+              </a>
+              <a class="icon-link icon-link--text" href="mailto:lolengjustingerald@gmail.com" aria-label="Email">@</a>
+            </div>
+          </div>
+        </article>
 
-  <!-- ═══════════════════════════════════════════════
-       BIO SECTION
-  ═══════════════════════════════════════════════ -->
-  <section class="bio-section section" id="bio" aria-labelledby="bio-heading">
+        <article class="window bio" data-reveal>
+          <div class="window__bar">
+            <span>about.md</span>
+            <span class="window__ctrls" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="bio__body">
+            <p class="bio__lead">Hi, I'm Justin. I turn ideas into working, polished products, from the database schema to the last pixel.</p>
+            <p>
+              I graduated with a BS in Information Technology from Pangasinan State University (Urdaneta City Campus).
+              At Suitelifer I was the project manager for the Coach Module and built it end to end: React, TypeScript,
+              Tailwind and Zustand on the front, Node.js, Express and Prisma on MySQL in the back, with integration and
+              API tests guarding it. I worked in Agile Scrum alongside senior devs and deployed it myself to testing,
+              staging and production.
+            </p>
+            <p>
+              Before that I led my capstone team building WebPath, a MERN learning platform where the DeepSeek API
+              generates adaptive learning paths and quizzes. I like clear code, honest reviews and interfaces that feel fast.
+            </p>
 
-    <div class="bio-watermark" aria-hidden="true">자살</div>
+            <ul class="stats" aria-label="At a glance">
+              <li class="stat"><span class="stat__num" data-count="3">3</span><span class="stat__label">projects shipped</span></li>
+              <li class="stat"><span class="stat__num" data-count="12" data-suffix="mo">12mo</span><span class="stat__label">leading a capstone team</span></li>
+              <li class="stat"><span class="stat__num" data-count="25" data-suffix="+">25+</span><span class="stat__label">tools in the kit</span></li>
+            </ul>
+          </div>
+        </article>
 
-    <div class="section-inner">
-      <h2 class="section-label stencil-label" id="bio-heading">[ WHO ARE WE / BIO ]</h2>
+        <article class="window journey" data-reveal>
+          <div class="window__bar">
+            <span>journey.log</span>
+            <span class="window__ctrls" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="timeline" id="timeline">
+            <span class="timeline__rail" aria-hidden="true"><span class="timeline__fill" id="timelineFill"></span></span>
+            <ol class="timeline__list">
+              <li class="tl">
+                <span class="tl__when">Feb 2026 - Apr 2026</span>
+                <h3 class="tl__what">Software Engineer Intern + Project Manager</h3>
+                <p class="tl__where">Suitelifer - Baguio City</p>
+                <p class="tl__note">Managed the Coach Module, built it end to end and deployed it to production.</p>
+              </li>
+              <li class="tl">
+                <span class="tl__when">Jan 2025 - Jan 2026</span>
+                <h3 class="tl__what">Capstone Leader / Programmer</h3>
+                <p class="tl__where">WebPath - Urdaneta City</p>
+                <p class="tl__note">Led a year-long, AI-assisted MERN learning platform.</p>
+              </li>
+              <li class="tl">
+                <span class="tl__when">Apr 2025 - May 2025</span>
+                <h3 class="tl__what">SatisTrack</h3>
+                <p class="tl__where">Web Development (ETR) - Urdaneta City</p>
+                <p class="tl__note">Laravel HR app for anonymous pulse surveys and live dashboards.</p>
+              </li>
+              <li class="tl">
+                <span class="tl__when">2021 - 2026</span>
+                <h3 class="tl__what">BS Information Technology</h3>
+                <p class="tl__where">Pangasinan State University - Urdaneta City Campus</p>
+                <p class="tl__note">Graduated.</p>
+              </li>
+              <li class="tl">
+                <span class="tl__when">2015 - 2021</span>
+                <h3 class="tl__what">Junior &amp; Senior High School</h3>
+                <p class="tl__where">Blessed Angels Achievers Academy</p>
+              </li>
+            </ol>
+          </div>
+        </article>
+      </div>
+    </section>
 
-      <div class="bio-grid reveal-item">
-        <div class="bio-col bio-col--main">
-          <p class="bio-text">
-            CRAFTING DIGITAL EXPERIENCES WITH A TOUCH OF STREET CULTURE.
-            SPECIALIZING IN HIGH-PERFORMANCE WEB APPLICATIONS AND
-            VISUALLY STRIKING INTERFACES.
-          </p>
-          <p class="bio-text bio-text--light">
-            Aspiring Software Engineer passionate about building dynamic and user-friendly web applications.
-            Recently completed studies with a focus on the MERN stack — MongoDB, Express.js, React, Node.js.
-            Eager to apply knowledge in a professional team environment and contribute to impactful projects.
-          </p>
-          <ul class="bio-list">
-            <li><span class="bio-icon">↗</span> Recently built a full-stack web app to solidify my understanding of the development lifecycle.</li>
-            <li><span class="bio-icon">↗</span> Currently diving deeper into TypeScript and exploring Cloud Computing (AWS).</li>
-            <li><span class="bio-icon">↗</span> Enjoy the problem-solving aspect of development — turning ideas into functional, polished products.</li>
-            <li><span class="bio-icon">↗</span> When not coding: experimenting with new UI/UX designs or trying out new stuff.</li>
+    <!-- ============ STACK ============ -->
+    <section class="section" id="stack" aria-labelledby="stack-title">
+      <header class="section__head">
+        <p class="section__kicker" data-reveal>[02] stack</p>
+        <h2 class="section__title" id="stack-title" data-reveal>Tools of the trade</h2>
+        <p class="section__sub" data-reveal>What I reach for, grouped by where it lives. The pink marker means I've shipped it to production.</p>
+      </header>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__row" id="marqueeA"></div>
+        <div class="marquee__row" id="marqueeB"></div>
+      </div>
+
+      <div class="filter" role="group" aria-label="Filter the stack">
+        <button class="filter__btn is-active" type="button" data-filter="all" aria-pressed="true">Everything</button>
+        <button class="filter__btn" type="button" data-filter="pro" aria-pressed="false"><span class="pro-dot" aria-hidden="true"></span>Shipped to production</button>
+      </div>
+
+      <div class="bento" id="bento">
+        <article class="window cat cat--lang" data-reveal>
+          <div class="window__bar"><span>languages/</span><span class="cat__count">9</span></div>
+          <ul class="chips">
+            <li class="chip" data-pro><img class="chip__icon" src="assets/icons/typescript.svg" alt="" /><span class="chip__text"><span class="chip__name">TypeScript</span><span class="chip__note">Suitelifer</span></span></li>
+            <li class="chip"><img class="chip__icon" src="assets/icons/javascript.svg" alt="" /><span class="chip__text"><span class="chip__name">JavaScript</span><span class="chip__note">WebPath, SatisTrack</span></span></li>
+            <li class="chip"><img class="chip__icon" src="assets/icons/html5.svg" alt="" /><span class="chip__text"><span class="chip__name">HTML5</span><span class="chip__note">Every project</span></span></li>
+            <li class="chip"><img class="chip__icon" src="assets/icons/css3.svg" alt="" /><span class="chip__text"><span class="chip__name">CSS3</span><span class="chip__note">Every project</span></span></li>
+            <li class="chip"><img class="chip__icon" src="assets/icons/php.svg" alt="" /><span class="chip__text"><span class="chip__name">PHP</span><span class="chip__note">SatisTrack</span></span></li>
+            <li class="chip"><img class="chip__icon" src="assets/icons/python.svg" alt="" /><span class="chip__text"><span class="chip__name">Python</span><span class="chip__note">Scripts, coursework</span></span></li>
+            <li class="chip"><img class="chip__icon" src="assets/icons/java.svg" alt="" /><span class="chip__text"><span class="chip__name">Java</span><span class="chip__note">Coursework</span></span></li>
+            <li class="chip"><img class="chip__icon" src="assets/icons/cplusplus.svg" alt="" /><span class="chip__text"><span class="chip__name">C++</span><span class="chip__note">DSA practice</span></span></li>
+            <li class="chip"><img class="chip__icon" src="assets/icons/dart.svg" alt="" /><span class="chip__text"><span class="chip__name">Dart</span><span class="chip__note">Mobile apps</span></span></li>
           </ul>
-        </div>
+        </article>
 
-        <div class="bio-col bio-col--aside">
-          <div class="bio-stat">
-            <span class="stat-num">10+</span>
-            <span class="stat-label">PROJECT CODE</span>
+        <article class="window cat cat--front" data-reveal>
+          <div class="window__bar"><span>frontend/</span><span class="cat__count">4</span></div>
+          <ul class="chips">
+            <li class="chip" data-pro><img class="chip__icon" src="assets/icons/react.svg" alt="" /><span class="chip__text"><span class="chip__name">React</span><span class="chip__note">Suitelifer, WebPath</span></span></li>
+            <li class="chip" data-pro><img class="chip__icon" src="assets/icons/tailwindcss.svg" alt="" /><span class="chip__text"><span class="chip__name">Tailwind CSS</span><span class="chip__note">Suitelifer, WebPath</span></span></li>
+            <li class="chip" data-pro><span class="chip__icon chip__icon--mono" aria-hidden="true">Zu</span><span class="chip__text"><span class="chip__name">Zustand</span><span class="chip__note">Suitelifer</span></span></li>
+            <li class="chip"><span class="chip__icon chip__icon--mono" aria-hidden="true">Ch</span><span class="chip__text"><span class="chip__name">Chart.js</span><span class="chip__note">SatisTrack</span></span></li>
+          </ul>
+        </article>
+
+        <article class="window cat cat--back" data-reveal>
+          <div class="window__bar"><span>backend/</span><span class="cat__count">4</span></div>
+          <ul class="chips">
+            <li class="chip" data-pro><img class="chip__icon" src="assets/icons/nodejs.svg" alt="" /><span class="chip__text"><span class="chip__name">Node.js</span><span class="chip__note">Suitelifer, WebPath</span></span></li>
+            <li class="chip" data-pro><img class="chip__icon" src="assets/icons/express.svg" alt="" /><span class="chip__text"><span class="chip__name">Express</span><span class="chip__note">REST APIs + RBAC</span></span></li>
+            <li class="chip"><img class="chip__icon" src="assets/icons/laravel.svg" alt="" /><span class="chip__text"><span class="chip__name">Laravel</span><span class="chip__note">SatisTrack</span></span></li>
+            <li class="chip"><span class="chip__icon chip__icon--mono" aria-hidden="true">DS</span><span class="chip__text"><span class="chip__name">DeepSeek API</span><span class="chip__note">WebPath AI paths</span></span></li>
+          </ul>
+        </article>
+
+        <article class="window cat cat--data" data-reveal>
+          <div class="window__bar"><span>databases/</span><span class="cat__count">6</span></div>
+          <ul class="chips">
+            <li class="chip" data-pro><img class="chip__icon" src="assets/icons/mysql.svg" alt="" /><span class="chip__text"><span class="chip__name">MySQL</span><span class="chip__note">Suitelifer, SatisTrack</span></span></li>
+            <li class="chip" data-pro><img class="chip__icon" src="assets/icons/prisma.svg" alt="" /><span class="chip__text"><span class="chip__name">Prisma ORM</span><span class="chip__note">Suitelifer</span></span></li>
+            <li class="chip"><img class="chip__icon" src="assets/icons/mongodb.svg" alt="" /><span class="chip__text"><span class="chip__name">MongoDB</span><span class="chip__note">WebPath</span></span></li>
+            <li class="chip"><img class="chip__icon" src="assets/icons/postgresql.svg" alt="" /><span class="chip__text"><span class="chip__name">PostgreSQL</span><span class="chip__note">Migration-ready schemas</span></span></li>
+            <li class="chip"><img class="chip__icon" src="assets/icons/firebase.svg" alt="" /><span class="chip__text"><span class="chip__name">Firestore</span><span class="chip__note">Mobile apps</span></span></li>
+            <li class="chip"><span class="chip__icon chip__icon--mono" aria-hidden="true">Hv</span><span class="chip__text"><span class="chip__name">Hive</span><span class="chip__note">Local storage in Dart</span></span></li>
+          </ul>
+        </article>
+
+        <article class="window cat cat--tools" data-reveal>
+          <div class="window__bar"><span>tools/</span><span class="cat__count">5</span></div>
+          <ul class="chips">
+            <li class="chip" data-pro><img class="chip__icon" src="assets/icons/git.svg" alt="" /><span class="chip__text"><span class="chip__name">Git</span><span class="chip__note">Every project</span></span></li>
+            <li class="chip"><img class="chip__icon" src="assets/icons/github.svg" alt="" /><span class="chip__text"><span class="chip__name">GitHub</span><span class="chip__note">Repos + reviews</span></span></li>
+            <li class="chip" data-pro><span class="chip__icon chip__icon--mono" aria-hidden="true">Hu</span><span class="chip__text"><span class="chip__name">Husky</span><span class="chip__note">Pre-commit hooks</span></span></li>
+            <li class="chip"><img class="chip__icon" src="assets/icons/mysql.svg" alt="" /><span class="chip__text"><span class="chip__name">MySQL Workbench</span><span class="chip__note">Schema design</span></span></li>
+            <li class="chip"><img class="chip__icon" src="assets/icons/figma.svg" alt="" /><span class="chip__text"><span class="chip__name">Figma</span><span class="chip__note">Wireframes</span></span></li>
+          </ul>
+        </article>
+
+        <article class="window cat cat--ways" data-reveal>
+          <div class="window__bar"><span>how_i_work/</span><span class="cat__count">5</span></div>
+          <ul class="chips">
+            <li class="chip" data-pro><span class="chip__icon chip__icon--mono" aria-hidden="true">Ag</span><span class="chip__text"><span class="chip__name">Agile Scrum</span><span class="chip__note">Sprints, stand-ups, retros</span></span></li>
+            <li class="chip" data-pro><span class="chip__icon chip__icon--mono" aria-hidden="true">QA</span><span class="chip__text"><span class="chip__name">Testing</span><span class="chip__note">Integration + API tests</span></span></li>
+            <li class="chip" data-pro><span class="chip__icon chip__icon--mono" aria-hidden="true">CR</span><span class="chip__text"><span class="chip__name">Code Review</span><span class="chip__note">Reviews + architecture talks</span></span></li>
+            <li class="chip" data-pro><span class="chip__icon chip__icon--mono" aria-hidden="true">PM</span><span class="chip__text"><span class="chip__name">Project Management</span><span class="chip__note">Coach Module PM, WebPath lead</span></span></li>
+            <li class="chip" data-pro><span class="chip__icon chip__icon--mono" aria-hidden="true">Dp</span><span class="chip__text"><span class="chip__name">Deployment</span><span class="chip__note">Testing, staging, production</span></span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section class="section" id="work" aria-labelledby="work-title">
+      <header class="section__head">
+        <p class="section__kicker" data-reveal>[03] work</p>
+        <h2 class="section__title" id="work-title" data-reveal>Things I've built</h2>
+      </header>
+
+      <div class="projects">
+        <article class="window project project--featured" data-reveal data-tilt>
+          <div class="window__bar">
+            <span>01 / suitelifer</span>
+            <span class="window__ctrls" aria-hidden="true"><i></i><i></i><i></i></span>
           </div>
-          <div class="bio-stat">
-            <span class="stat-num">4+</span>
-            <span class="stat-label">FEATURED PROJECTS</span>
+          <div class="project__body">
+            <div class="project__main">
+              <p class="project__meta">Project Manager + Software Engineer Intern - Feb 2026 to Apr 2026</p>
+              <h3 class="project__title">Suitelifer Coach Module</h3>
+              <p class="project__desc">
+                Coachees submit coaching acknowledgment forms; coaches and admins get the tools to manage them.
+                I managed the project and built it end to end, from the Prisma schema to the React screens, then deployed it
+                myself through testing, staging and production.
+              </p>
+              <ul class="tags" aria-label="Built with">
+                <li>React</li><li>TypeScript</li><li>Tailwind</li><li>Zustand</li><li>Node.js</li><li>Express</li><li>Prisma</li><li>MySQL</li><li>Husky</li>
+              </ul>
+            </div>
+            <ul class="project__points">
+              <li>Project manager for the module: owned its scope, timeline and delivery.</li>
+              <li>Deployed it to testing, staging and production.</li>
+              <li>RESTful APIs in Node, Express and TypeScript with role-based access control.</li>
+              <li>Clean-architecture services on Prisma + MySQL, ready for a PostgreSQL migration.</li>
+              <li>Integration and API endpoint tests, plus Husky pre-commit hooks.</li>
+              <li>Agile Scrum with senior devs: code reviews and architecture planning.</li>
+            </ul>
           </div>
-          <div class="bio-stat">
-            <span class="stat-num">10+</span>
-            <span class="stat-label">TECHNOLOGIES</span>
+        </article>
+
+        <article class="window project" data-reveal data-tilt>
+          <div class="window__bar">
+            <span>02 / webpath</span>
+            <span class="window__ctrls" aria-hidden="true"><i></i><i></i><i></i></span>
           </div>
-          <div class="bio-divider"></div>
-          <p class="bio-quote">"LAST TIME WAS THE LAST TIME."</p>
+          <div class="project__body">
+            <p class="project__meta">Capstone Leader - Jan 2025 to Jan 2026</p>
+            <h3 class="project__title">WebPath</h3>
+            <p class="project__desc">
+              An AI-assisted platform for learning web development: interactive courses, a built-in code playground and
+              automated assessments. The DeepSeek API generates adaptive learning paths, quizzes and feedback.
+            </p>
+            <ul class="tags" aria-label="Built with">
+              <li>MongoDB</li><li>Express</li><li>React</li><li>Node.js</li><li>Tailwind</li><li>DeepSeek</li>
+            </ul>
+            <a class="btn btn--sm" href="https://webpaths-vtjf.vercel.app" target="_blank" rel="noopener noreferrer">Visit site</a>
+          </div>
+        </article>
+
+        <article class="window project" data-reveal data-tilt>
+          <div class="window__bar">
+            <span>03 / satistrack</span>
+            <span class="window__ctrls" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="project__body">
+            <p class="project__meta">Web Development (ETR) - Apr 2025 to May 2025</p>
+            <h3 class="project__title">SatisTrack</h3>
+            <p class="project__desc">
+              An HR system for tracking workplace morale through anonymous pulse surveys, with authentication,
+              role-based access and real-time Chart.js dashboards on a secure MySQL schema.
+            </p>
+            <ul class="tags" aria-label="Built with">
+              <li>PHP</li><li>Laravel</li><li>MySQL</li><li>Chart.js</li>
+            </ul>
+            <a class="btn btn--sm btn--ghost" href="https://github.com/justinloleng/SatisTrack" target="_blank" rel="noopener noreferrer">View code</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section section--contact" id="contact" aria-labelledby="contact-title">
+      <div class="window contact" data-reveal>
+        <div class="window__bar">
+          <span>new_message.txt</span>
+          <span class="window__ctrls" aria-hidden="true"><i></i><i></i><i></i></span>
+        </div>
+        <div class="contact__body">
+          <p class="section__kicker section__kicker--inline">[04] contact</p>
+          <h2 class="contact__title" id="contact-title">Let's build something.</h2>
+          <p class="contact__text">Open to Junior Software Engineer and Web Developer roles. The fastest way to reach me is email.</p>
+
+          <div class="contact__email">
+            <a href="mailto:lolengjustingerald@gmail.com">lolengjustingerald@gmail.com</a>
+            <button class="btn btn--sm btn--ghost" type="button" id="copyEmail">Copy</button>
+          </div>
+
+          <div class="contact__links">
+            <a class="btn" href="mailto:lolengjustingerald@gmail.com">Email me</a>
+            <a class="btn btn--ghost" href="https://www.linkedin.com/in/justin-gerald-loleng-b0134834a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a class="btn btn--ghost" href="https://github.com/justinloleng" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a class="btn btn--ghost" href="Loleng, Justin- Resume.pdf" download="Justin_Loleng_Resume.pdf">Resume.pdf</a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- ═══════════════════════════════════════════════
-       PROJECTS SECTION
-  ═══════════════════════════════════════════════ -->
-  <section class="projects-section section" id="projects" aria-labelledby="projects-heading">
-    <div class="section-inner">
-      <h2 class="section-label stencil-label" id="projects-heading">[ FEATURED PROJECTS ]</h2>
-      <p class="section-sub">SELECTED WORKS — 2023–2025</p>
-    </div>
-
-    <!-- ✅ FIXED: was "projects-grid", now correct "projects-track-wrap" + "projects-track" -->
-    <div class="projects-track-wrap">
-      <div class="projects-track" role="list">
-
-        <!-- CARD 1 -->
-        <article class="project-card reveal-item" role="listitem" id="card-pvp">
-          <div class="card-number">01</div>
-          <div class="card-img-wrap">
-            <div class="card-img card-img--pvp"></div>
-            <div class="card-img-label">PVP / REALTIME</div>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">PVP CODING WARS</h3>
-            <p class="card-desc">
-              A real-time competitive coding platform. Live code execution environment allowing users to solve challenges against opponents in synchronized battle rooms.
-            </p>
-            <ul class="card-tech">
-              <li class="tech-tag">MongoDB</li>
-              <li class="tech-tag">Express.js</li>
-              <li class="tech-tag">React</li>
-              <li class="tech-tag">Node.js</li>
-              <li class="tech-tag">Socket.io</li>
-              <li class="tech-tag">Monaco Editor</li>
-            </ul>
-            <div class="card-footer-row">
-              <span class="card-code">PROJECT 747</span>
-              <a href="#" class="card-link" aria-label="View PVP Coding Wars project">VIEW →</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- CARD 2 -->
-        <article class="project-card reveal-item" role="listitem" id="card-webpath">
-          <div class="card-number">02</div>
-          <div class="card-img-wrap">
-            <div class="card-img card-img--webpath"></div>
-            <div class="card-img-label">AI / LEARNING</div>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">WEBPATH</h3>
-            <p class="card-desc">
-              An adaptive learning platform generating personalized educational paths. RESTful API with OpenAI integration for custom quiz question generation based on user progress.
-            </p>
-            <ul class="card-tech">
-              <li class="tech-tag">React</li>
-              <li class="tech-tag">Node.js</li>
-              <li class="tech-tag">Express.js</li>
-              <li class="tech-tag">MongoDB</li>
-              <li class="tech-tag">Tailwind CSS</li>
-              <li class="tech-tag">OpenAI API</li>
-            </ul>
-            <div class="card-footer-row">
-              <span class="card-code">UNDEFEATED CODE</span>
-              <a href="https://webpaths-vtjf.vercel.app" class="card-link" target="_blank" rel="noopener noreferrer" aria-label="View WebPath project">VIEW →</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- CARD 3 -->
-        <article class="project-card reveal-item" role="listitem" id="card-satistrack">
-          <div class="card-number">03</div>
-          <div class="card-img-wrap">
-            <div class="card-img card-img--satistrack"></div>
-            <div class="card-img-label">HR / ANALYTICS</div>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">SATISTRACK</h3>
-            <p class="card-desc">
-              Internal HR tool for anonymous pulse surveys and company morale tracking. Dynamic Chart.js visualizations of satisfaction trends providing clear, actionable data.
-            </p>
-            <ul class="card-tech">
-              <li class="tech-tag">PHP</li>
-              <li class="tech-tag">Laravel</li>
-              <li class="tech-tag">MySQL</li>
-              <li class="tech-tag">Chart.js</li>
-            </ul>
-            <div class="card-footer-row">
-              <span class="card-code">LAST TIME APP</span>
-              <a href="https://github.com/justinloleng/SatisTrack" class="card-link" target="_blank" rel="noopener noreferrer" aria-label="View SatisTrack project">VIEW →</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- CARD 4 -->
-        <article class="project-card reveal-item" role="listitem" id="card-ecom">
-          <div class="card-number">04</div>
-          <div class="card-img-wrap">
-            <div class="card-img card-img--ecom"></div>
-            <div class="card-img-label">E-COMMERCE / PAYMENTS</div>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">E-COMMERCE PLATFORM</h3>
-            <p class="card-desc">
-              A robust e-commerce prototype with core marketplace features. Secure auth, product catalog, Stripe sandbox payment processing, and full shopping cart workflow.
-            </p>
-            <ul class="card-tech">
-              <li class="tech-tag">Python</li>
-              <li class="tech-tag">Flask</li>
-              <li class="tech-tag">SQLAlchemy</li>
-              <li class="tech-tag">Stripe API</li>
-            </ul>
-            <div class="card-footer-row">
-              <span class="card-code">PROJECT 747-B</span>
-              <a href="https://github.com/justinloleng/ecommerce" class="card-link" target="_blank" rel="noopener noreferrer" aria-label="View E-Commerce project">VIEW →</a>
-            </div>
-          </div>
-        </article>
-
-      </div><!-- end .projects-track -->
-    </div><!-- end .projects-track-wrap -->
-
-    <p class="drag-hint">
-      <span class="drag-line"></span>
-      DRAG TO EXPLORE
-      <span class="drag-line"></span>
-    </p>
-
-  </section>
-
-  <!-- ═══════════════════════════════════════════════
-       TECH STACK SECTION
-  ═══════════════════════════════════════════════ -->
-  <section class="stack-section section" id="stack" aria-labelledby="stack-heading">
-    <div class="section-inner">
-      <h2 class="section-label stencil-label" id="stack-heading">[ TECH STACK ]</h2>
-
-      <div class="stack-grid reveal-item">
-
-        <!-- LANGUAGES -->
-        <div class="stack-group">
-          <h3 class="stack-group-title">LANGUAGES</h3>
-          <div class="stack-row">
-            <div class="stack-item" title="JavaScript">
-              <i class="devicon-javascript-plain colored stack-icon"></i>
-              <span class="stack-name">JAVASCRIPT</span>
-            </div>
-            <div class="stack-item" title="TypeScript">
-              <i class="devicon-typescript-plain colored stack-icon"></i>
-              <span class="stack-name">TYPESCRIPT</span>
-            </div>
-            <div class="stack-item" title="Python">
-              <i class="devicon-python-plain colored stack-icon"></i>
-              <span class="stack-name">PYTHON</span>
-            </div>
-            <div class="stack-item" title="PHP">
-              <i class="devicon-php-plain colored stack-icon"></i>
-              <span class="stack-name">PHP</span>
-            </div>
-            <div class="stack-item" title="Dart">
-              <i class="devicon-dart-plain colored stack-icon"></i>
-              <span class="stack-name">DART</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- FRONTEND -->
-        <div class="stack-group">
-          <h3 class="stack-group-title">FRONTEND</h3>
-          <div class="stack-row">
-            <div class="stack-item" title="React.js">
-              <i class="devicon-react-original colored stack-icon"></i>
-              <span class="stack-name">REACT.JS</span>
-            </div>
-            <div class="stack-item" title="Next.js">
-              <i class="devicon-nextjs-plain stack-icon"></i>
-              <span class="stack-name">NEXT.JS</span>
-            </div>
-            <div class="stack-item" title="Tailwind CSS">
-              <i class="devicon-tailwindcss-plain colored stack-icon"></i>
-              <span class="stack-name">TAILWIND CSS</span>
-            </div>
-            <div class="stack-item" title="Flutter">
-              <i class="devicon-flutter-plain colored stack-icon"></i>
-              <span class="stack-name">FLUTTER</span>
-            </div>
-            <div class="stack-item" title="GSAP">
-              <span class="stack-icon stack-icon--text">GS</span>
-              <span class="stack-name">GSAP</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- BACKEND / DATABASES -->
-        <div class="stack-group">
-          <h3 class="stack-group-title">BACKEND / DATABASES</h3>
-          <div class="stack-row">
-            <div class="stack-item" title="Node.js">
-              <i class="devicon-nodejs-plain colored stack-icon"></i>
-              <span class="stack-name">NODE.JS</span>
-            </div>
-            <div class="stack-item" title="TypeScript">
-              <i class="devicon-typescript-plain colored stack-icon"></i>
-              <span class="stack-name">TYPESCRIPT</span>
-            </div>
-            <div class="stack-item" title="Express.js">
-              <i class="devicon-express-original stack-icon"></i>
-              <span class="stack-name">EXPRESS.JS</span>
-            </div>
-            <div class="stack-item" title="Flask">
-              <i class="devicon-flask-original stack-icon"></i>
-              <span class="stack-name">FLASK</span>
-            </div>
-            <div class="stack-item" title="Laravel">
-              <i class="devicon-laravel-plain colored stack-icon"></i>
-              <span class="stack-name">LARAVEL</span>
-            </div>
-            <div class="stack-item" title="MongoDB">
-              <i class="devicon-mongodb-plain colored stack-icon"></i>
-              <span class="stack-name">MONGODB</span>
-            </div>
-            <div class="stack-item" title="MySQL">
-              <i class="devicon-mysql-plain colored stack-icon"></i>
-              <span class="stack-name">MYSQL</span>
-            </div>
-            <div class="stack-item" title="PostgreSQL">
-              <i class="devicon-postgresql-plain colored stack-icon"></i>
-              <span class="stack-name">POSTGRESQL</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- TOOLS -->
-        <div class="stack-group">
-          <h3 class="stack-group-title">TOOLS</h3>
-          <div class="stack-row">
-            <div class="stack-item" title="Git">
-              <i class="devicon-git-plain colored stack-icon"></i>
-              <span class="stack-name">GIT</span>
-            </div>
-            <div class="stack-item" title="Figma">
-              <i class="devicon-figma-plain colored stack-icon"></i>
-              <span class="stack-name">FIGMA</span>
-            </div>
-            <div class="stack-item" title="Postman">
-              <i class="devicon-postman-plain colored stack-icon"></i>
-              <span class="stack-name">POSTMAN</span>
-            </div>
-            <div class="stack-item" title="Socket.io">
-              <span class="stack-icon stack-icon--text">IO</span>
-              <span class="stack-name">SOCKET.IO</span>
-            </div>
-            <div class="stack-item" title="REST APIs">
-              <span class="stack-icon stack-icon--text">API</span>
-              <span class="stack-name">REST APIs</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════
-       VISUAL LOG SECTION
-  ═══════════════════════════════════════════════ -->
-  <section class="visual-log-section section" id="visual-log" aria-labelledby="log-heading">
-    <div class="section-inner section-inner--narrow">
-      <h2 class="section-label stencil-label" id="log-heading">[ VISUAL LOG ]</h2>
-    </div>
-
-    <div class="log-track-wrap">
-      <div class="log-track" id="log-track">
-        <div class="log-slide" id="log-slide-1">
-          <img src="img_log1.png" alt="Close-up of mechanical key switch with South Korean flag decal" loading="lazy" />
-          <div class="log-caption">KEY SWITCH / FLAG DECAL / 2024</div>
-        </div>
-        <div class="log-slide" id="log-slide-2">
-          <img src="img_log2.png" alt="Concrete wall with 자살 painted in white spray paint" loading="lazy" />
-          <div class="log-caption">자살 / CONCRETE / WEST SIDE</div>
-        </div>
-        <div class="log-slide" id="log-slide-3">
-          <img src="img_log3.png" alt="Motion blur pink neon sign at night" loading="lazy" />
-          <div class="log-caption">PINK NEON / MOTION BLUR / NIGHTSCAPE</div>
-        </div>
-        <div class="log-slide" id="log-slide-4">
-          <img src="img_log4.png" alt="Server racks with UNDEFEATED label sticker" loading="lazy" />
-          <div class="log-caption">SERVER RACKS / UNDEFEATED / DATA CENTER</div>
-        </div>
-        <div class="log-slide" id="log-slide-5">
-          <img src="img_log5.png" alt="Black custom wheel with pink brake caliper" loading="lazy" />
-          <div class="log-caption">BLACK WHEEL / PINK CALIPER / DETAIL SHOT</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="log-dots" id="log-dots" role="tablist" aria-label="Visual log navigation">
-      <button class="log-dot active" data-idx="0" role="tab" aria-label="Slide 1" aria-selected="true"></button>
-      <button class="log-dot" data-idx="1" role="tab" aria-label="Slide 2" aria-selected="false"></button>
-      <button class="log-dot" data-idx="2" role="tab" aria-label="Slide 3" aria-selected="false"></button>
-      <button class="log-dot" data-idx="3" role="tab" aria-label="Slide 4" aria-selected="false"></button>
-      <button class="log-dot" data-idx="4" role="tab" aria-label="Slide 5" aria-selected="false"></button>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════
-       CONTACT / FOOTER SECTION
-  ═══════════════════════════════════════════════ -->
-  <section class="contact-section section" id="contact" aria-labelledby="contact-heading">
-
-    <div class="contact-car-bg" aria-hidden="true">
-      <img src="theme.jpg" alt="" />
-    </div>
-
-    <div class="section-inner">
-      <h2 class="contact-headline" id="contact-heading">
-        LAST TIME<br/>WAS THE<br/>LAST TIME.
-      </h2>
-
-      <p class="contact-sub reveal-item">
-        I'm actively seeking opportunities as a Junior Software Engineer or Web Developer.<br/>
-        Feel free to reach out.
+  <footer class="footer">
+    <div class="footer__bar">
+      <a class="footer__start" href="#home" aria-label="Back to top">
+        <svg viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges"><path d="M7 2h2v1h1v1h1v1h1v1h1v2h-2V7h-1v7H7V7H6v1H4V6h1V5h1V4h1z" /></svg>
+        JGL
+      </a>
+      <p class="footer__copy">(c) 2026 Justin Gerald Loleng</p>
+      <ul class="footer__credits">
+        <li>Built by Finnistired ft. Mr. Claude</li>
+        <li>Pixel art credits to Aduare</li>
+      </ul>
+      <p class="footer__tray" title="Local time in the Philippines">
+        <span class="footer__dot" aria-hidden="true"></span>
+        <span>PH</span>
+        <time id="clock">--:--</time>
       </p>
-
-      <nav class="contact-links reveal-item" aria-label="Social and Contact Links">
-        <a href="https://github.com/justinloleng" class="contact-link" id="link-github" target="_blank" rel="noopener noreferrer">
-          <span class="contact-link-label">GITHUB</span>
-          <span class="contact-link-arrow">↗</span>
-        </a>
-        <a href="https://behance.net/" class="contact-link" id="link-behance" target="_blank" rel="noopener noreferrer">
-          <span class="contact-link-label">BEHANCE</span>
-          <span class="contact-link-arrow">↗</span>
-        </a>
-        <a href="https://www.linkedin.com/in/justin-gerald-loleng-b0134834a/" class="contact-link" id="link-linkedin" target="_blank" rel="noopener noreferrer">
-          <span class="contact-link-label">LINKEDIN</span>
-          <span class="contact-link-arrow">↗</span>
-        </a>
-        <a href="mailto:lolengjustingerald@gmail.com" class="contact-link" id="link-email">
-          <span class="contact-link-label">EMAIL</span>
-          <span class="contact-link-arrow">↗</span>
-        </a>
-      </nav>
-
-      <div class="contact-email reveal-item">lolengjustingerald@gmail.com</div>
     </div>
+  </footer>
 
-    <footer class="footer-bar">
-      <span class="footer-credit footer-credit--left">DESIGNED BY: JUSTIN GERALD LOLENG</span>
-      <span class="footer-credit footer-credit--center">A.S.S.C. Inspired PORTFOLIO</span>
-      <span class="footer-credit footer-credit--right">2025</span>
-    </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  </section>
-
-  <script src="main.js"></script>
-  <script src="chatbot.js"></script>
 </body>
 </html>
