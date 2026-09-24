@@ -14,7 +14,7 @@
     role: 'Aspiring Software Engineer / Full-Stack Developer',
     email: 'lolengjustingerald@gmail.com',
     github: 'https://github.com/justinloleng',
-    linkedin: 'https://www.linkedin.com/in/justin-gerald-loleng-b0134834a/',
+    linkedin: 'https://www.linkedin.com/in/justingeraldloleng/',
 
     education: {
       degree: 'Bachelor of Science in Information Technology',
